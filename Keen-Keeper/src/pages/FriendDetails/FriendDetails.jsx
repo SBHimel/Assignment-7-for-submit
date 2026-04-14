@@ -8,7 +8,7 @@ import { MdOutlineTextsms } from "react-icons/md";
 import { PiVideoCamera } from "react-icons/pi";
 
 const FriendDetails = () => {
-  const { friends, loading } = useContext(FriendsContext);
+  const { friends, loading, statusStyle } = useContext(FriendsContext);
   console.log(friends);
   const { id } = useParams();
 
@@ -19,6 +19,9 @@ const FriendDetails = () => {
   }
 
   const [showFull, setShowFull] = useState(false);
+
+
+
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -42,7 +45,8 @@ const FriendDetails = () => {
           {/* Status Tags */}
           <div className="  mb-4">
             <div>
-              <span className="bg-red-100 text-red-700 font-medium px-4 py-1 rounded-full">
+              <span className={` font-medium px-4 py-1 rounded-full
+                 ${statusStyle(friend.status)}`}>
                 {friend.status}
               </span>
             </div>
@@ -100,16 +104,16 @@ const FriendDetails = () => {
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
-              <div className="text-4xl font-bold text-gray-900">62</div>
+              <div className="text-4xl font-bold text-gray-900">{friend.days_since_contact}</div>
               <p className="text-gray-500 text-sm mt-1">Days Since Contact</p>
             </div>
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
-              <div className="text-4xl font-bold text-gray-900">30</div>
+              <div className="text-4xl font-bold text-gray-900">{friend.goal}</div>
               <p className="text-gray-500 text-sm mt-1">Goal (Days)</p>
             </div>
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
               <div className="text-4xl font-bold text-gray-900">
-                Feb 27, 2026
+                {friend.next_due_date}
               </div>
               <p className="text-gray-500 text-sm mt-1">Next Due</p>
             </div>

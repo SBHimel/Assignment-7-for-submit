@@ -23,8 +23,19 @@ const FriendsProvider = ({children}) => {
   console.log(loading, "Loading");
 
 
+  const statusStyle = (status) => {
+    if (status === "on-track") {
+      return "bg-green-800 text-white";
+    } else if (status === "overdue") {
+      return "bg-red-600 text-white";
+    } else {
+      return "bg-yellow-500 text-white";
+    }
+  };
+
+
  return (
-    <FriendsContext.Provider value={{friends, setFriends, loading,setLoading}}>
+    <FriendsContext.Provider value={{friends, setFriends, loading, setLoading, statusStyle}}>
       {children}
     </FriendsContext.Provider>
   );
