@@ -18,11 +18,13 @@ const FriendDetails = () => {
     return <h2 className="text-center mt-10">Loading...</h2>;
   }
 
+  const [showFull, setShowFull] = useState(false);
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Side - Profile Card */}
-        <div className="lg:col-span-1 bg-white rounded-3xl shadow-sm p-8 text-center">
+        <div className="lg:col-span-1 bg-white rounded-3xl shadow-sm p-3 text-center">
           {/* Profile Picture */}
           <div className="flex justify-center mb-6">
             <img
@@ -40,35 +42,54 @@ const FriendDetails = () => {
           {/* Status Tags */}
           <div className="  mb-4">
             <div>
-                <span className="bg-red-100 text-red-700 text-xs font-medium px-4 py-1.5 rounded-full">
-              {friend.status}
-            </span>
+              <span className="bg-red-100 text-red-700 font-medium px-4 py-1 rounded-full">
+                {friend.status}
+              </span>
             </div>
 
-            <div>
-                {friend.tags?.map((tag, index) => (
-                  <span key={index}className="bg-emerald-100 text-emerald-700 text-xs font-medium px-4 py-2 rounded-full">
-              {tag}
-            </span>
-                ))}
+            <div className="pt-2 space-x-1 ">
+              {friend.tags?.map((tag, index) => (
+                <span
+                  key={index}
+                  className="bg-gradient-to-r from-emerald-100 to-emerald-200 
+        text-emerald-700 
+        text-xs sm:text-sm 
+        font-medium 
+        px-3 sm:px-4 py-1 
+        rounded-full 
+        shadow-sm 
+        hover:scale-105 hover:bg-emerald-300 
+        transition-all duration-200"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
           {/* Bio */}
           <p className="text-gray-600 italic mb-2">
-            "Former colleague, great mentor"
+            {showFull ? friend.bio : friend.bio.slice(0, 50)}
+
+            <span
+              onClick={() => setShowFull(!showFull)}
+              className="cursor-pointer text-gray-500"
+            >
+              {showFull ? " show less" : "..."}
+            </span>
           </p>
-          <p className="text-gray-500 text-sm pb-1.5">Preferred: email</p>
+
+          <p className="text-gray-500 text-sm pb-1.5">Email: {friend.email}</p>
 
           {/* Left Actions */}
           <div className="space-y-2">
-            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-left p-3  rounded-2xl flex items-center gap-4 transition">
+            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 p-3 rounded-2xl flex items-center justify-center gap-2 transition">
               <RiNotificationSnoozeLine /> Snooze 2 Weeks
             </button>
-            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-left p-3 rounded-2xl flex items-center gap-4 transition">
+            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50  p-3 rounded-2xl flex items-center justify-center gap-2 transition">
               <FiArchive /> Archive
             </button>
-            <button className="w-full bg-white border border-red-200 hover:bg-red-50 text-red-600 text-left p-3 rounded-2xl flex items-center gap-4 transition">
+            <button className="w-full bg-white border border-red-200 hover:bg-red-50 text-red-600  p-3 rounded-2xl flex items-center justify-center gap-2 transition">
               <RiDeleteBinLine /> Delete
             </button>
           </div>
