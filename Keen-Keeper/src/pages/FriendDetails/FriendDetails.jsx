@@ -6,19 +6,25 @@ import { FiArchive } from "react-icons/fi";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdOutlineTextsms } from "react-icons/md";
 import { PiVideoCamera } from "react-icons/pi";
+import { PacmanLoader } from "react-spinners";
 
 const FriendDetails = () => {
   const { friends, loading, statusStyle } = useContext(FriendsContext);
   console.log(friends);
   const { id } = useParams();
 
+   const [showFull, setShowFull] = useState(false);
+
   const friend = friends.find((item) => item.id === Number(id));
 
   if (!friend) {
-    return <h2 className="text-center mt-10">Loading...</h2>;
+    return <div className="flex flex-col justify-center items-center h-40 gap-3">
+          <PacmanLoader color="#10b981" size={20} />
+          <p className="text-sm font-bold text-gray-500">Loading data...</p>
+        </div>;
   }
 
-  const [showFull, setShowFull] = useState(false);
+ 
 
 
 
@@ -79,7 +85,7 @@ const FriendDetails = () => {
               onClick={() => setShowFull(!showFull)}
               className="cursor-pointer text-gray-500"
             >
-              {showFull ? " show less" : "..."}
+              {showFull ? " show less" : "...show more"}
             </span>
           </p>
 
