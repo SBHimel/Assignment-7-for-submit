@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "David Kim",
+    "picture": "https://randomuser.me/api/portraits/men/32.jpg",
+    "email": "david.kim@email.com",
+    "days_since_contact": 62,
+    "status": "almost due",
+    "tags": ["work", "close friend"],
+    "bio": "Colleague turned close friend. We often discuss career goals and grab coffee together.",
+    "goal": 30,
+    "next_due_date": "2026-05-10"
+  },
+  {
+    "id": 2,
+    "name": "Sarah Chen",
+    "picture": "https://randomuser.me/api/portraits/women/44.jpg",
+    "email": "sarah.chen@email.com",
+    "days_since_contact": 8,
+    "status": "on-track",
+    "tags": ["college", "best friend"],
+    "bio": "Met during university days. Still my go-to person for life advice and late-night talks.",
+    "goal": 14,
+    "next_due_date": "2026-04-25"
+  },
+  {
+    "id": 3,
+    "name": "Aisha Rahman",
+    "picture": "https://randomuser.me/api/portraits/women/65.jpg",
+    "email": "aisha.rahman@email.com",
+    "days_since_contact": 45,
+    "status": "overdue",
+    "tags": ["neighbor", "family friend"],
+    "bio": "Our families have been close for years. Loves cooking and we often share recipes.",
+    "goal": 21,
+    "next_due_date": "2026-04-18"
+  },
+  {
+    "id": 4,
+    "name": "Michael Torres",
+    "picture": "https://randomuser.me/api/portraits/men/45.jpg",
+    "email": "michael.torres@email.com",
+    "days_since_contact": 3,
+    "status": "on-track",
+    "tags": ["gym buddy", "friend"],
+    "bio": "Workout partner for the last 2 years. We motivate each other to stay consistent.",
+    "goal": 10,
+    "next_due_date": "2026-04-22"
+  },
+  {
+    "id": 5,
+    "name": "Priya Sharma",
+    "picture": "https://randomuser.me/api/portraits/women/22.jpg",
+    "email": "priya.sharma@email.com",
+    "days_since_contact": 19,
+    "status": "almost due",
+    "tags": ["school friend", "close friend"],
+    "bio": "Childhood friend from school. We share the same sense of humor and love traveling.",
+    "goal": 25,
+    "next_due_date": "2026-05-05"
+  },
+  {
+    "id": 6,
+    "name": "James Okoro",
+    "picture": "https://randomuser.me/api/portraits/men/67.jpg",
+    "email": "james.okoro@email.com",
+    "days_since_contact": 78,
+    "status": "overdue",
+    "tags": ["old friend", "mentor"],
+    "bio": "Former senior at my first job. Always gives great career and life advice.",
+    "goal": 45,
+    "next_due_date": "2026-04-15"
+  },
+  {
+    "id": 7,
+    "name": "Emma Dubois",
+    "picture": "https://randomuser.me/api/portraits/women/33.jpg",
+    "email": "emma.dubois@email.com",
+    "days_since_contact": 12,
+    "status": "on-track",
+    "tags": ["book club", "friend"],
+    "bio": "Book club member and now a dear friend. We love discussing novels over tea.",
+    "goal": 15,
+    "next_due_date": "2026-04-28"
+  },
+  {
+    "id": 8,
+    "name": "Rahul Patel",
+    "picture": "https://randomuser.me/api/portraits/men/12.jpg",
+    "email": "rahul.patel@email.com",
+    "days_since_contact": 33,
+    "status": "almost due",
+    "tags": ["cricket buddy", "friend"],
+    "bio": "Weekend cricket teammate. We enjoy watching matches together and talking sports.",
+    "goal": 20,
+    "next_due_date": "2026-05-01"
+  },
+  {
+    "id": 9,
+    "name": "Nadia Islam",
+    "picture": "https://randomuser.me/api/portraits/women/55.jpg",
+    "email": "nadia.islam@email.com",
+    "days_since_contact": 27,
+    "status": "almost due",
+    "tags": ["cousin", "family"],
+    "bio": "My cousin from Chittagong. We grew up together and still share family stories and recipes.",
+    "goal": 30,
+    "next_due_date": "2026-05-08"
+  },
+  {
+    "id": 10,
+    "name": "Arif Khan",
+    "picture": "https://randomuser.me/api/portraits/men/88.jpg",
+    "email": "arif.khan@email.com",
+    "days_since_contact": 52,
+    "status": "overdue",
+    "tags": ["school friend", "cricket"],
+    "bio": "Old school friend and cricket teammate. We used to play in the same team during college.",
+    "goal": 40,
+    "next_due_date": "2026-04-20"
+  }
+]

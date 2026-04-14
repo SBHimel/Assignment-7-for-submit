@@ -1,14 +1,17 @@
 import React from 'react';
-import Banner from '../../components/home/Banner';
+
 import Counter from '../../components/home/Counter';
-import Friends from '../../components/home/Friends';
+import Banner from '../../components/home/Banner';
+import FriendsCard from '../../components/home/FriendsCard';
+
+
 
 const Home = () => {
     return (
         <div className='bg-[#F8FAFC]'>
             <Banner></Banner>
             <Counter></Counter>
-            <Friends></Friends>
+            <FriendsCard></FriendsCard>
         </div>
     );
 };
