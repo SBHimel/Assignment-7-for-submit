@@ -1,60 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Friends from "../../ui/Friends";
+import { PacmanLoader } from "react-spinners";
+import { Link } from "react-router";
+import { FriendsContext } from "../../context/FriendsContext";
 
 const FriendsCard = () => {
-  const [frinds, setFriends] = useState([]);
+  const { friends, loading } = useContext(FriendsContext);
+  console.log(friends);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("/data.json");
-      const data = await res.json();
-      console.log(data);
-      setFriends(data);
-    };
-    fetchData();
-  }, []);
-
-  console.log(frinds, "frinds data");
+  /* status design */
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="pb-5">
-        <h2 className="font-bold text-2xl ">Your Friends: {frinds.length}</h2>
+        <h2 className="font-bold text-2xl ">Your Friends: {friends.length}</h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        
-        {frinds.map(frind => (
-            <div key={frind.id} className=" rounded-2xl shadow-sm p-6 text-center">
-          {/* Profile Picture */}
-          <div className="flex justify-center mb-5">
-            <img
-              src={frind.picture}
-              alt="Profile"
-              className="w-28 h-28 rounded-full object-cover border-4 border-white shadow"
-            />
-          </div>
+      {/* Loading dekhenu */}
 
-          {/* Name */}
-          <h3 className="text-2xl font-semibold text-gray-900 mb-1">
-            David Kim
-          </h3>
-
-          {/* Time ago */}
-          <p className="text-gray-500 text-sm mb-6">62d ago</p>
-
-          {/* Tags */}
-          <div className="space-y-3">
-            <div className="bg-emerald-100 text-emerald-700 text-xs font-medium px-6 py-2 rounded-full inline-block">
-              WORK
-            </div>
-
-            <div className="bg-orange-100 text-orange-700 text-xs font-medium px-6 py-2 rounded-full inline-block">
-              Almost Due
-            </div>
-          </div>
+      {loading ? (
+        <div className="flex flex-col justify-center items-center h-40 gap-3">
+          <PacmanLoader color="#10b981" size={20} />
+          <p className="text-sm font-bold text-gray-500">Loading data...</p>
         </div>
-        ))}
-      </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {friends.map((friend) => (
+            <Link key={friend.id} to={`/friend/${friend.id}`}>
+        <Friends frind={friend} />
+      </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
