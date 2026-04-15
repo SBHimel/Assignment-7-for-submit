@@ -1,8 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FriendsContext } from "../../context/FriendsContext";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Timeline = () => {
   const { timelineData } = useContext(FriendsContext);
+
+  const [filter, setFilter] = useState("all");
+  console.log(filter);
+
+  const filteredData =
+    filter === "all"
+      ? timelineData
+      : timelineData.filter((item) => item.action === filter);
+
+  console.log(filteredData);
 
   const getIcon = (action) => {
     if (action === "call") return "📞";
@@ -10,6 +21,7 @@ const Timeline = () => {
     if (action === "video") return "🎥";
     return "🤝";
   };
+//   console.log(getIcon);
 
   return timelineData.length === 0 ? (
     <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -29,19 +41,39 @@ const Timeline = () => {
   ) : (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-6">
       <h1 className="text-4xl font-bold text-gray-900 mb-8">
-        Timeline {timelineData.length}
+        Timeline: {timelineData.length}
       </h1>
 
       {/* Filter Dropdown */}
-      <div className="mb-8">
-        <div className="inline-block px-5 py-3 bg-white border border-gray-200 rounded-xl shadow-sm text-gray-600">
-          Filter timeline ▼
+      <div className="dropdown dropdown-start">
+        <div tabIndex={0} role="button" className="btn m-1">
+          <span className="text-[18px]">Filter timeline: {filteredData.length}</span>{" "}
+          <span className="pl-9">
+            <RiArrowDropDownLine className="text-2xl" />
+          </span>
         </div>
+        <ul
+          tabIndex="-1"
+          className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+        >
+          <li>
+            <a onClick={() => setFilter("all")}>All</a>
+          </li>
+          <li>
+            <a onClick={() => setFilter("call")}>Call</a>
+          </li>
+          <li>
+            <a onClick={() => setFilter("text")}>Text</a>
+          </li>
+          <li>
+            <a onClick={() => setFilter("video")}>Video</a>
+          </li>
+        </ul>
       </div>
 
       {/* Events */}
       <div className="space-y-4">
-        {timelineData.map((item, index) => (
+        {filteredData.map((item, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-5 border border-gray-100"

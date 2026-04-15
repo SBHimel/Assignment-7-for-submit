@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <FriendsProvider>
       <RouterProvider router={router} />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </FriendsProvider>
   </StrictMode>,
 );
