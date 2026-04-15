@@ -26,14 +26,14 @@ function Footer() {
           
           <div className="flex justify-center gap-6">
             <a 
-              href="#" 
+              href="https://www.instagram.com/s.b.himel3/" 
               className="w-11 h-11 bg-white/10 hover:bg-white/20 transition-all rounded-full flex items-center justify-center text-2xl"
             >
               <FaInstagram />
             </a>
             
             <a 
-              href="#" 
+              href="https://www.facebook.com/s.b.himel.669113" 
               className="w-11 h-11 bg-white/10 hover:bg-white/20 transition-all rounded-full flex items-center justify-center text-2xl"
             >
               <FaFacebook />

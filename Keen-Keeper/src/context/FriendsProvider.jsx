@@ -5,6 +5,7 @@ import { FriendsContext } from "./FriendsContext";
 const FriendsProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [friends, setFriends] = useState([]);
+  const [timelineData, setTimelineData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +36,7 @@ const FriendsProvider = ({children}) => {
 
 
  return (
-    <FriendsContext.Provider value={{friends, setFriends, loading, setLoading, statusStyle}}>
+    <FriendsContext.Provider value={{friends, setFriends, loading, setLoading, statusStyle, setTimelineData, timelineData}}>
       {children}
     </FriendsContext.Provider>
   );

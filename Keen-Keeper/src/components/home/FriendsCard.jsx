@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { FriendsContext } from "../../context/FriendsContext";
 
 const FriendsCard = () => {
+  
   const { friends, loading } = useContext(FriendsContext);
   console.log(friends);
 

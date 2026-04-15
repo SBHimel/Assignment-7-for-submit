@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { FriendsContext } from "../../context/FriendsContext";
 import { RiDeleteBinLine, RiNotificationSnoozeLine } from "react-icons/ri";
@@ -7,27 +7,48 @@ import { LuPhoneCall } from "react-icons/lu";
 import { MdOutlineTextsms } from "react-icons/md";
 import { PiVideoCamera } from "react-icons/pi";
 import { PacmanLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 const FriendDetails = () => {
-  const { friends, loading, statusStyle } = useContext(FriendsContext);
-  console.log(friends);
+  const { friends, loading, statusStyle, timelineData, setTimelineData } =
+    useContext(FriendsContext);
+  // console.log(friends);
   const { id } = useParams();
 
-   const [showFull, setShowFull] = useState(false);
+  const [showFull, setShowFull] = useState(false);
+
+  // console.log(navigate);
 
   const friend = friends.find((item) => item.id === Number(id));
 
   if (!friend) {
-    return <div className="flex flex-col justify-center items-center h-40 gap-3">
-          <PacmanLoader color="#10b981" size={20} />
-          <p className="text-sm font-bold text-gray-500">Loading data...</p>
-        </div>;
+    return (
+      <div className="flex flex-col justify-center items-center h-40 gap-3">
+        <PacmanLoader color="#10b981" size={20} />
+        <p className="text-sm font-bold text-gray-500">Loading data...</p>
+      </div>
+    );
   }
 
- 
+  const handleAction = (friend, actionType) => {
+  setTimelineData((prev) => [
+    ...prev,
+    {
+      action: actionType,
+      friend,
+      time: new Date(),
+    },
+  ]);
 
-
-
+  // toast + style switch
+  if (actionType === "call") {
+    toast.success(`Calling ${friend.name} 📞`);
+  } else if (actionType === "text") {
+    toast(`Messaging ${friend.name} 💬`);
+  } else if (actionType === "video") {
+    toast(`Video calling ${friend.name} 🎥`);
+  }
+};
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -51,8 +72,10 @@ const FriendDetails = () => {
           {/* Status Tags */}
           <div className="  mb-4">
             <div>
-              <span className={` font-medium px-4 py-1 rounded-full
-                 ${statusStyle(friend.status)}`}>
+              <span
+                className={` font-medium px-4 py-1 rounded-full
+                 ${statusStyle(friend.status)}`}
+              >
                 {friend.status}
               </span>
             </div>
@@ -110,11 +133,15 @@ const FriendDetails = () => {
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
-              <div className="text-4xl font-bold text-gray-900">{friend.days_since_contact}</div>
+              <div className="text-4xl font-bold text-gray-900">
+                {friend.days_since_contact}
+              </div>
               <p className="text-gray-500 text-sm mt-1">Days Since Contact</p>
             </div>
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
-              <div className="text-4xl font-bold text-gray-900">{friend.goal}</div>
+              <div className="text-4xl font-bold text-gray-900">
+                {friend.goal}
+              </div>
               <p className="text-gray-500 text-sm mt-1">Goal (Days)</p>
             </div>
             <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
@@ -144,15 +171,22 @@ const FriendDetails = () => {
             <div className="bg-white rounded-3xl shadow-sm p-8  ">
               <h3 className="font-semibold text-lg mb-6">Quick Check-In</h3>
               <div className="grid grid-cols-3 gap-4">
-                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition">
+                <button
+                  onClick={() => handleAction(friend, "call")}
+                  className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition"
+                >
                   <LuPhoneCall />
                   <span className="text-sm font-medium">Call</span>
                 </button>
-                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition">
+                <button
+                onClick={() => handleAction(friend, "text")}
+                className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition">
                   <MdOutlineTextsms />
                   <span className="text-sm font-medium">Text</span>
                 </button>
-                <button className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition">
+                <button 
+                onClick={() => handleAction(friend, "video")}
+                 className="flex flex-col items-center gap-2 p-4 hover:bg-gray-50 rounded-2xl transition">
                   <PiVideoCamera />
                   <span className="text-sm font-medium">Video</span>
                 </button>
