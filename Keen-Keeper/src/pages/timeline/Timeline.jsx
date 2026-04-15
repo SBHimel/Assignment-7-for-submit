@@ -71,6 +71,7 @@ const Timeline = () => {
         </ul>
       </div>
 
+
       {/* Events */}
       <div className="space-y-4">
         {filteredData.map((item, index) => (
