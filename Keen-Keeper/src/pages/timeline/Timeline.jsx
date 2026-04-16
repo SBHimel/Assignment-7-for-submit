@@ -35,6 +35,7 @@ const Timeline = () => {
   };
   //   console.log(getIcon);
 
+  
   return timelineData.length === 0 ? (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       {/* Icon */}
