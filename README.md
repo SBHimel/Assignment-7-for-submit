@@ -32,10 +32,8 @@ Clean and user-friendly interface
 Add persistent storage (localStorage / database)
 User authentication
 Reminder notifications for due contacts
-🔗 Live Demo
 
-(You can add your Netlify/Vercel link here)
 
 👨‍💻 Author
 
-Developed by You 🚀
+Developed by You S.B. Himel
