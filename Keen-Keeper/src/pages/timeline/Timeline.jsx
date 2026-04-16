@@ -5,15 +5,28 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 const Timeline = () => {
   const { timelineData } = useContext(FriendsContext);
 
+  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
   console.log(filter);
 
-  const filteredData =
-    filter === "all"
-      ? timelineData
-      : timelineData.filter((item) => item.action === filter);
 
+  let data = timelineData;
+  // filter
+   /*যদি "all" না হয়
+(মানে call/text/video কিছু selected hoy tahole শুধু ওই type এর data রাখো)  */
+  if (filter !== "all") {
+    data = data.filter((item) => item.action === filter);
+  }
+  // search--> ager filter data theke name khuje ber kora
+  data = data.filter((item) =>
+    item.friend.name.toLowerCase().includes(search.toLowerCase()),
+  );
+  /* .includes(...) ---> এটা check করে “মিলছে কিনা” */
+
+  const filteredData = data;
   console.log(filteredData);
+
+
 
   const getIcon = (action) => {
     if (action === "call") return "📞";
@@ -21,7 +34,7 @@ const Timeline = () => {
     if (action === "video") return "🎥";
     return "🤝";
   };
-//   console.log(getIcon);
+  //   console.log(getIcon);
 
   return timelineData.length === 0 ? (
     <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -40,14 +53,33 @@ const Timeline = () => {
     </div>
   ) : (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-6">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8">
-        Timeline: {timelineData.length}
-      </h1>
+      <div className="flex justify-between">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+            Timeline: {timelineData.length}
+          </h1>
+        </div>
+
+        {/* 🔍 Search Box */}
+        <div className="mb-6">
+          <p className="text-lg font-semibold mb-2">🔎 Search by name</p>
+
+          <input
+            type="text"
+            placeholder="Type a name..."
+            className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
 
       {/* Filter Dropdown */}
       <div className="dropdown dropdown-start">
         <div tabIndex={0} role="button" className="btn m-1">
-          <span className="text-[18px]">Filter timeline: {filteredData.length}</span>{" "}
+          <span className="text-[18px]">
+            Filter timeline: {filteredData.length}
+          </span>{" "}
           <span className="pl-9">
             <RiArrowDropDownLine className="text-2xl" />
           </span>
@@ -70,7 +102,6 @@ const Timeline = () => {
           </li>
         </ul>
       </div>
-
 
       {/* Events */}
       <div className="space-y-4">
