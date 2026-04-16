@@ -27,7 +27,6 @@ const Timeline = () => {
   console.log(filteredData);
 
 
-
   const getIcon = (action) => {
     if (action === "call") return "📞";
     if (action === "text") return "💬";
