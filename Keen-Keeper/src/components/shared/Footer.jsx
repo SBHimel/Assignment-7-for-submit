@@ -40,7 +40,7 @@ function Footer() {
             </a>
             
             <a 
-              href="#" 
+              href="https://x.com/" 
               className="w-11 h-11 bg-white/10 hover:bg-white/20 transition-all rounded-full flex items-center justify-center text-2xl"
             >
               <FaXTwitter />
