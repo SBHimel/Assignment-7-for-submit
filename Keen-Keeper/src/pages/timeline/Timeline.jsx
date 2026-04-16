@@ -26,6 +26,11 @@ const Timeline = () => {
   const filteredData = data;
   console.log(filteredData);
 
+/* sort এর কাজ হলো “সাজানো” */
+  const sortedData = [...filteredData].sort(
+    (a,b) => new Date(b.time) - new Date(a.time)
+  );
+
 
   const getIcon = (action) => {
     if (action === "call") return "📞";
@@ -35,7 +40,7 @@ const Timeline = () => {
   };
   //   console.log(getIcon);
 
-  
+
   return timelineData.length === 0 ? (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       {/* Icon */}
@@ -78,7 +83,7 @@ const Timeline = () => {
       <div className="dropdown dropdown-start">
         <div tabIndex={0} role="button" className="btn m-1">
           <span className="text-[18px]">
-            Filter timeline: {filteredData.length}
+           <p> Filter timeline: {filteredData.length}  <span className="pl-2">({filter})</span></p> 
           </span>{" "}
           <span className="pl-9">
             <RiArrowDropDownLine className="text-2xl" />
@@ -105,7 +110,7 @@ const Timeline = () => {
 
       {/* Events */}
       <div className="space-y-4">
-        {filteredData.map((item, index) => (
+        {sortedData.map((item, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-5 border border-gray-100"
